@@ -1,0 +1,272 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: sans-serif;
+      background: #e0e0e0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      gap: 16px;
+      overflow-y: auto;
+    }
+    /* Top Row */
+    #top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #page-title {
+      font-size: 26px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    #btn-add-subscription {
+      background: salmon;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    #metric-monthly-spend {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    #metric-annual-spend {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    #metric-active-subscriptions {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    #metric-cancelled {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    /* placeholder text inside metric cards */
+    .metric-label {
+      font-size: 13px;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    .metric-value {
+      font-size: 20px;
+      font-weight: bold;
+      color: #222;
+    }
+    .metric-sub {
+      font-size: 12px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    /* Middle Row */
+    #middle-row {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 12px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* Subscription Table */
+    #subscription-table {
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    #subscription-table h2 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    #subscription-table-scroll {
+      overflow-y: auto;
+      flex: 1;
+      background: white;
+      border-radius: 10px;
+    }
+
+    #subscription-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    #subscription-table thead th {
+      padding: 10px 14px;
+      text-align: left;
+      color: #666;
+      border-bottom: 1px solid #eee;
+      background: #fafafa;
+      font-weight: 600;
+    }
+
+    #subscription-table tbody tr {
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    #subscription-table tbody td {
+      padding: 10px 14px;
+      color: #333;
+    }
+
+    .btn-cancel-subscription {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .status-active   .status-dot { background: #2ecc71; }
+    .status-due-soon .status-dot { background: #f39c12; }
+
+    /* Calendar */
+    #calendar {
+      background: white;
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+    }
+
+    #calendar h2 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #222;
+      align-self: flex-start;
+    }
+
+    #calendar-grid {
+      width: 100%;
+    }
+
+    /* Bottom Row */
+    #bottom-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    /* Spending by Category */
+    #spending-by-category {
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 180px;
+    }
+
+    #spending-by-category h2 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    #spending-chart {
+      flex: 1;
+      background: white;
+      border-radius: 10px;
+    }
+
+    /* Upcoming Renewals */
+    #upcoming-renewals {
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 180px;
+    }
+
+    #upcoming-renewals h2 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    #upcoming-renewals-list {
+      flex: 1;
+      background: white;
+      border-radius: 10px;
+      overflow-y: auto;
+    }
+
+    /* Payment History */
+    #payment-history {
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 180px;
+    }
+
+    #payment-history h2 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    #payment-history-list {
+      flex: 1;
+      background: white;
+      border-radius: 10px;
+      overflow-y: auto;
+    }
