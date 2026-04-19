@@ -2,118 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rocket Money Lite</title>
   <link rel="stylesheet" href="style.css"/>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <!-- Main Content -->
-    <main id="main">
 
-    <div id="top-bar">
-      <h1 id="page-title">Dashboard</h1>
-      <button id="btn-add-subscription">Add Subscription</button>
-    </div>
+<main id="main">
 
+  <div id="top-bar">
+    <h1 id="page-title">Dashboard</h1>
+    <button id="btn-add-subscription">Add Subscription</button>
+  </div>
 
-    <!-- Metrics -->
-    <div id="metrics">
-        <!-- These all have just placeholder values for now -->
-    <div id="metric-monthly-spend">
-        <div class="metric-label">Monthly Spend</div>
-        <div class="metric-value">$0.00</div>
-        <div class="metric-sub">0 Active subscriptions</div>
-    </div>
+  <div id="metrics"></div>
 
-    <div id="metric-annual-spend">
-        <div class="metric-label">Annual Spend</div>
-        <div class="metric-value">$0.00</div>
-        <div class="metric-sub">Estimated</div>
-    </div>
+  <div id="middle-row">
 
-    <div id="metric-active-subscriptions">
-        <div class="metric-label">Active Subscriptions</div>
-        <div class="metric-value">0</div>
-        <div class="metric-sub">Across 0 categories</div>
-    </div>
-
-    <div id="metric-cancelled">
-        <div class="metric-label">Cancelled</div>
-        <div class="metric-value">0</div>
-        <div class="metric-sub">Saves $0 a Month</div>
-    </div>
-
-    </div>
-
-    <div id="middle-row">
-        
-        <!-- Subscription Table -->
     <div id="subscription-table">
-        <h2>All Subscriptions:</h2>
-
-        <div id="subscription-table-scroll">
-            <table id="subscription-table">
-                <thead>
-                    <tr>
-                    <th>Service</th>
-                    <th>Category</th>
-                    <th>Status</th>
-                    <th>Amount</th>
-                    <th>Next Renewal</th>
-                    <th></th>
-                    </tr>
-                </thead>
-            <tbody id="subscription-table-body">
-                <!-- This is where the subscription information will sit -->
-            </tbody>
-          </table>
-        </div>
+      <h2>All Subscriptions:</h2>
+      <div id="subscription-table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Amount</th>
+              <th>Next Renewal</th>
+            </tr>
+          </thead>
+          <tbody id="subscription-table-body"></tbody>
+        </table>
       </div>
+    </div>
 
-      <!-- Calendar -->
     <div id="calendar">
-        <h2>CALENDAR</h2>
-
-        <div id="calendar-grid">
-            <!-- Calendar stuff will flow in here -->
-        </div>
-
+      <h2>CALENDAR</h2>
+      <div id="calendar-grid"></div>
     </div>
 
-    </div>
+  </div>
 
+  <div id="bottom-row">
 
-    <!-- Bottom Row -->
-    <div id="bottom-row">
-
-      <!-- Category -->
     <div id="spending-by-category">
-        <h2>Spending by Category</h2>
-        <div id="spending-chart">
-            <!-- Chart stuff will go here -->
-        </div>
-      </div>
+      <h2>Spending by Category</h2>
+      <div id="spending-chart"></div>
+    </div>
 
-      <!-- Upcoming -->
     <div id="upcoming-renewals">
-        <h2>Upcoming Renewals</h2>
-        <div id="upcoming-renewals-list">
-
-        </div>
+      <h2>Upcoming Renewals</h2>
+      <div id="upcoming-renewals-list"></div>
     </div>
 
-      <!-- Payment History -->
     <div id="payment-history">
-        <h2>Payment History</h2>
-        <div id="payment-history-list">
-
-        </div>
+      <h2>Payment History</h2>
+      <div id="payment-history-list"></div>
     </div>
 
-    </div>
+  </div>
 
-  </main>
+</main>
+
+<!-- JS FILES -->
+<script src="js/app.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/renewals.js"></script>
+<script src="js/payments.js"></script>
 
 </body>
 </html>
