@@ -30,7 +30,7 @@
     }
 
     #btn-add-subscription {
-      background: salmon;
+      background: rgb(129, 129, 129);
       color: white;
       border: none;
       border-radius: 20px;
@@ -131,8 +131,8 @@
     }
 
     #subscription-table thead th {
-      padding: 10px 14px;
-      text-align: left;
+      padding: 10px 9vh;
+      text-align: center;
       color: #666;
       border-bottom: 1px solid #eee;
       background: #fafafa;
@@ -175,7 +175,6 @@
 
     /* Calendar */
     #calendar {
-      background: white;
       border-radius: 14px;
       padding: 16px;
       display: flex;
@@ -193,8 +192,83 @@
     }
 
     #calendar-grid {
-      width: 100%;
-    }
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+}
+#calendar-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+#calendar-btn button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+#calendar-btn button:hover {
+    background: #ececec;
+}
+.monthYear {
+    text-align: center;
+    font-weight: 600;
+    width: 150px;
+}
+.days {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+}
+.day {
+    font-size: 90%;
+    text-align: center;
+    padding: 3px;
+    font-weight: 500;
+}
+.dates {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 3px;
+    grid-auto-rows: minmax(20px, auto); /* Adjust height based on content */
+}
+.date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    margin: auto;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 50%;
+    width: 0;
+    height: 35px;
+    transition: 0.2%;
+}
+.date:hover {
+    width: 30px;
+    height: 30px;
+    background: #cdcdcd;
+}
+.date.active {
+    width: 30px;
+    height: 30px;
+    background: #cdcdcd;
+}
+.date.inactive {
+    color: #a8a8a8;
+}
 
     /* Bottom Row */
     #bottom-row {

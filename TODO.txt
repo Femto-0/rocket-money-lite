@@ -1,0 +1,32 @@
+Somethings that still need to be implemented
+
+Calander:
+    - Hoverable/Clickable dates for renewal days so user can see which service is coming up
+
+Cancel button:
+    - Cancel button should just send user to that services cancel membership page
+    - This can be done by having some hard coded options for things like Netflix, Spotify, etc.
+    or simply send user to a google link search of "How to cancel _______ subscription"
+
+Add subscription button:
+    - Create a model or some type of form for user to fill out to add a subscription
+
+Pie chart/Bar graph:
+    - Instead of opening a new page when clicked, make it a toggleable thing
+
+Upcoming renewals and Payment history
+    - Just fix layout so it looks a little better
+
+Mobile form:
+    - Convert from the website page to fit on mobile
+
+Customizability (OPTIONAL):
+    - Some customizable options for user to change 
+        - Category colors?
+        - Website colors?
+        - Font sizes?
+        - Color blind mode?
+    - Webpage color set
+    - Fix consistency with everything (if any)
+        - Font, colors, panel spaces, padding, etc.
+
