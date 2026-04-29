@@ -1,14 +1,9 @@
 let appData = {};
 
-<<<<<<< HEAD
-=======
-// Load data once
->>>>>>> bcac4032391a82873c438ba18645e4b3060704ed
 async function loadData() {
   const res = await fetch("data/data.json");
   appData = await res.json();
 
-<<<<<<< HEAD
   renderMetrics(appData);
   renderSubscriptionTable(appData);
   renderSpendingChart(appData);       // must run before calendar so colorMap is ready
@@ -71,11 +66,3 @@ function renderSubscriptionTable(data) {
 }
 
 document.addEventListener("DOMContentLoaded", loadData);
-=======
-  renderSpendingChart(appData);
-  renderUpcomingRenewals(appData);
-  renderPaymentHistory(appData);
-}
-
-document.addEventListener("DOMContentLoaded", loadData);
->>>>>>> bcac4032391a82873c438ba18645e4b3060704ed
