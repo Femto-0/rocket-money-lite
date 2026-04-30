@@ -1,6 +1,6 @@
 let deleteName = null;
 
-const $ = id => document.getElementById(id);
+const $  = id => document.getElementById(id);
 const show = id => $(id).style.display = "flex";
 const hide = id => $(id).style.display = "none";
 
@@ -25,35 +25,30 @@ document.addEventListener("click", e => {
   }
 
   if (e.target.id === "confirm-add-btn") {
-    const name = $("add-name").value.trim();
-    const category = $("add-category").value.trim();
-    const amount = parseFloat($("add-amount").value);
+    const name        = $("add-name").value.trim();
+    const category    = $("add-category").value.trim();
     const nextRenewal = $("add-renewal").value;
 
-    if (!name || !category || isNaN(amount) || !nextRenewal) {
+    const enteredAmount = parseFloat($("add-amount").value);
+    const rate = (window.activeCurrency?.key)
+      ? (CURRENCY_RATES[window.activeCurrency.key]?.rate || 1)
+      : 1;
+    const amountUSD = enteredAmount / rate;
+
+    if (!name || !category || isNaN(enteredAmount) || !nextRenewal) {
       alert("Please fill out all fields.");
       return;
     }
 
-    appData.subscriptions.push({
-      name,
-      category,
-      status: "Active",
-      amount,
-      nextRenewal
-    });
-
+    appData.subscriptions.push({ name, category, status: "Active", amount: amountUSD, nextRenewal });
     refreshDashboard();
-
-    ["add-name", "add-category", "add-amount", "add-renewal"].forEach(id => {
-      $(id).value = "";
-    });
-
+    ["add-name", "add-category", "add-amount", "add-renewal"].forEach(id => $(id).value = "");
     hide("add-popup");
   }
 
   if (e.target.classList.contains("btn-cancel-subscription")) {
     deleteName = e.target.dataset.name;
+    $("delete-popup-text").textContent = `Are you sure you want to cancel "${deleteName}"?`;
     show("delete-popup");
   }
 
