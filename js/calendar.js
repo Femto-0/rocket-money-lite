@@ -58,8 +58,12 @@ const updateCalendar = () => {
       `<span class="renewal-dot" style="background:${c};"></span>`
     ).join('');
 
+    const bgStyle = colors.length
+      ? `style="background:${colors[0]};"`
+      : '';
+
     datesHTML += `
-      <div class="date ${isToday ? 'active' : ''}">
+      <div class="date ${isToday ? 'active' : ''}" ${bgStyle}>
         <span class="date-num">${i}</span>
         ${dots ? `<span class="dot-row">${dots}</span>` : ''}
       </div>`;

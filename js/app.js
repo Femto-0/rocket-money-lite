@@ -1,5 +1,26 @@
 let appData = {};
 
+const CURRENCY_RATES = {
+  "$":  { rate: 1,       label: "USD – US Dollar"  },
+  "€":  { rate: 0.86,    label: "EUR – Euro"        },
+  "£":  { rate: 0.74,    label: "GBP – Pound"       },
+  "¥J": { rate: 160.28,  label: "JPY – Yen"         },
+  "¥C": { rate: 6.84,    label: "CNY – Yuan"        },
+};
+
+window.activeCurrency = { symbol: "$", key: "$" };
+
+// USD to others converter
+function convertAmount(usdAmount) {
+  const rate = CURRENCY_RATES[window.activeCurrency.key]?.rate || 1;
+  return usdAmount * rate;
+}
+
+function fmt(usdAmount) {
+  const sym = window.activeCurrency.symbol;
+  return sym + convertAmount(usdAmount).toFixed(2);
+}
+
 async function loadData() {
   const res = await fetch("data/data.json");
   appData = await res.json();
@@ -12,23 +33,30 @@ async function loadData() {
   updateCalendarWithRenewals(appData.subscriptions);
 }
 
+function refreshAmounts() {
+  renderMetrics(appData);
+  renderSubscriptionTable(appData);
+  renderUpcomingRenewals(appData);
+  renderPaymentHistory(appData);
+}
+
 function renderMetrics(data) {
   const subs      = data.subscriptions;
   const active    = subs.filter(s => s.status === "Active");
   const cancelled = subs.filter(s => s.status === "Cancelled");
 
-  const monthlyTotal = active.reduce((sum, s) => sum + s.amount, 0);
-  const annualTotal  = monthlyTotal * 12;
-  const savedTotal   = cancelled.reduce((sum, s) => sum + s.amount, 0);
-  const categories   = new Set(active.map(s => s.category));
+  const monthlyUSD = active.reduce((sum, s) => sum + s.amount, 0);
+  const annualUSD  = monthlyUSD * 12;
+  const savedUSD   = cancelled.reduce((sum, s) => sum + s.amount, 0);
+  const categories = new Set(active.map(s => s.category));
 
-  document.getElementById("val-monthly").textContent      = "$" + monthlyTotal.toFixed(2);
+  document.getElementById("val-monthly").textContent      = fmt(monthlyUSD);
   document.getElementById("val-active-count").textContent = active.length + " Active subscriptions";
-  document.getElementById("val-annual").textContent       = "$" + annualTotal.toFixed(2);
+  document.getElementById("val-annual").textContent       = fmt(annualUSD);
   document.getElementById("val-active").textContent       = active.length;
   document.getElementById("val-categories").textContent   = "Across " + categories.size + " categories";
   document.getElementById("val-cancelled").textContent    = cancelled.length;
-  document.getElementById("val-savings").textContent      = "Saves $" + savedTotal.toFixed(2) + " a Month";
+  document.getElementById("val-savings").textContent      = "Saves " + fmt(savedUSD) + " a Month";
 }
 
 function renderSubscriptionTable(data) {
@@ -38,8 +66,12 @@ function renderSubscriptionTable(data) {
   data.subscriptions.forEach(sub => {
     const isCancelled = sub.status === "Cancelled";
 
-    const [y, m, d]  = sub.nextRenewal.split('-').map(Number);
-    const renewal    = new Date(y, m - 1, d);
+    const [y, m, d] = sub.nextRenewal.split("-").map(Number);
+    const renewal   = new Date(y, m - 1, d);
+    const today     = new Date();
+    today.setHours(0, 0, 0, 0);
+    const daysAway  = (renewal - today) / (1000 * 60 * 60 * 24);
+    const isDueSoon = daysAway <= 7 && daysAway >= 0;
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -71,7 +103,7 @@ function renderSubscriptionTable(data) {
           <span class="status-dot"></span>${statusLabel}
         </span>
       </td>
-      <td>$${sub.amount.toFixed(2)}</td>
+      <td>${fmt(sub.amount)}</td>
       <td>${sub.nextRenewal}</td>
       <td>
         ${

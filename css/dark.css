@@ -1,0 +1,198 @@
+body.dark-mode { 
+  background: #1a1a2e;
+  color: #e0e0e0; 
+}
+
+body.dark-mode #page-title,
+body.dark-mode .metric-label, body.dark-mode .metric-value,
+body.dark-mode #subscription-table-panel h2, body.dark-mode #calendar h2,
+body.dark-mode #spending-by-category h2, body.dark-mode #upcoming-renewals h2,
+body.dark-mode #payment-history h2 { 
+  color: #e0e0e0; 
+}
+
+body.dark-mode #metric-monthly-spend, body.dark-mode #metric-annual-spend,
+body.dark-mode #metric-active-subscriptions, body.dark-mode #metric-cancelled {
+  background: #16213e; border: 1px solid #0f3460;
+}
+
+body.dark-mode .metric-sub {
+  color: #8888aa;
+}
+
+body.dark-mode #subscription-table-scroll, body.dark-mode #calendar-grid,
+body.dark-mode #spending-chart, body.dark-mode #upcoming-renewals-list,
+body.dark-mode #payment-history-list {
+  background: #16213e; color: #e0e0e0;
+}
+
+body.dark-mode #subscription-table thead th {
+  background: #0f3460;
+  color: #aab0cc;
+  border-color: #1a2a5e; 
+}
+
+body.dark-mode #subscription-table tbody tr {
+  border-color: #1a2a5e;
+}
+
+body.dark-mode #subscription-table tbody td {
+  color: #ccd0e0;
+}
+
+body.dark-mode #subscription-table tbody tr:hover {
+  background: #1a3a7e;
+}
+
+body.dark-mode #btn-add-subscription {
+  background: #0f3460;
+}
+
+body.dark-mode #btn-add-subscription:hover {
+  background: #1a3a7e;
+}
+
+body.dark-mode #menu-btn {
+  background: #16213e; 
+}
+
+body.dark-mode #menu-btn span {
+  background: #ccd0e0;
+}
+
+body.dark-mode #menu-btn:hover {
+  background: #0f3460;
+}
+
+body.dark-mode #menu {
+  background: #16213e;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .username {
+  color: #e0e0e0;
+}
+
+body.dark-mode .divider  {
+  background: #1a2a5e;
+}
+
+body.dark-mode .item:hover {
+  background: #0f3460;
+}
+
+body.dark-mode .item-icon  {
+  background: #0f3460;
+}
+
+body.dark-mode .item-title {
+  color: #e0e0e0;
+}
+
+body.dark-mode .item-sub   {
+  color: #6677bb;
+}
+
+body.dark-mode .section-label {
+  color: #5566aa;
+}
+
+body.dark-mode .currency-option {
+  background: #0f3460;
+  border-color: #1a2a5e;
+  color: #ccd0e0;
+}
+
+body.dark-mode .currency-option:hover   { 
+  background: #1a3a7e; 
+}
+
+body.dark-mode .currency-option.active  { 
+  background: #5b8dee; 
+  color: white;
+}
+
+body.dark-mode .day {
+  color: #5566aa;
+}
+
+body.dark-mode .date-num {
+  color: #ccd0e0;
+}
+body.dark-mode .date:hover {
+  background: #0f3460;
+}
+
+body.dark-mode .date.active {
+  background: #1a3a7e;
+}
+
+body.dark-mode .date.active .date-num {
+  color: #7aadff;
+}
+
+body.dark-mode .date.inactive .date-num {
+  color: #2a3a6e;
+}
+
+body.dark-mode .popup {
+  background: rgba(0,0,0,0.65);
+}
+
+body.dark-mode .popup-box {
+  background: #16213e; color: #e0e0e0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid #0f3460;
+}
+
+body.dark-mode .popup-box h3 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .popup-box p  {
+  color: #aab0cc;
+}
+
+body.dark-mode .popup-box input {
+  background: #0f3460;
+  color: #e0e0e0;
+  border: 1px solid #1a3a7e;
+  border-radius: 6px;
+  padding: 8px;
+  outline: none;
+}
+
+body.dark-mode .popup-box input::placeholder { color: #5566aa; }
+body.dark-mode .popup-box small { color: #6677bb !important; }
+body.dark-mode .popup-box button {
+  background: #0f3460;
+  color: #e0e0e0;
+  border: 1px solid #1a3a7e;
+  border-radius: 6px;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+body.dark-mode .popup-box button:hover {
+  background: #1a3a7e;
+}
+
+body.dark-mode #confirm-add-btn,
+body.dark-mode #confirm-delete-btn { 
+  background: #5b8dee;
+  border-color: #5b8dee;
+  color: white;
+}
+
+body.dark-mode #confirm-add-btn:hover,
+body.dark-mode #confirm-delete-btn:hover {
+  background: #3a6acc;
+}
+
+body.dark-mode #calendar-btn button {
+  background: #0f3460;
+}
+
+body.dark-mode #calendar-btn button:hover { 
+  background: #1a3a7e;
+}
