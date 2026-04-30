@@ -435,6 +435,72 @@ body {
   margin-bottom: 12px;
 }
 
+
+/* Chart takes center stage when clicked"
+
+/* Hidden by default */
+.hidden {
+  display: none;
+}
+
+/* Fullscreen overlay */
+#chart-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+/* Blurred background */
+.modal-backdrop {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Centered modal */
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 70%;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+/* Chart fills modal */
+#fullscreen-chart {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+/* fade out cancelled subs*/
+
+/* Entire row faded */
+.row-cancelled {
+  opacity: 0.5;
+}
+
+/* Optional: muted text color */
+.row-cancelled td {
+  color: #888;
+}
+
+/* Optional: cancelled badge style */
+.status-cancelled {
+  background-color: #ddd;
+  color: #666;
+}
+
+
 /* Mobile */
 @media (max-width: 768px) {
   body {
