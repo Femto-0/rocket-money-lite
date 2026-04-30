@@ -24,14 +24,21 @@ const updateCalendar = () => {
   });
 
   const dayColorMap = {};
+
   if (window._calendarSubs) {
     window._calendarSubs.forEach(sub => {
+
+      if (sub.status === "Cancelled") return;
+
       const [year, month, day] = sub.nextRenewal.split('-').map(Number);
+
       if (year === currentYear && month === currentMonth + 1) {
         if (!dayColorMap[day]) dayColorMap[day] = [];
+
         const color = (window.categoryColorMap && window.categoryColorMap[sub.category])
           ? window.categoryColorMap[sub.category]
           : '#e74c3c';
+
         dayColorMap[day].push(color);
       }
     });
@@ -41,18 +48,20 @@ const updateCalendar = () => {
   let cellCount = 0;
 
   const prevMonthLastDay = new Date(currentYear, currentMonth, 0).getDate();
+
   for (let i = firstDayIdx - 1; i >= 0; i--) {
     datesHTML += `
       <div class="date inactive">
         <span class="date-num">${prevMonthLastDay - i}</span>
-      </div>`;    
+      </div>`;
     cellCount++;
   }
 
-  // Current month days
   for (let i = 1; i <= totalDays; i++) {
-    const isToday = new Date(currentYear, currentMonth, i).toDateString() === new Date().toDateString();
-    const colors  = dayColorMap[i] || [];
+    const isToday = new Date(currentYear, currentMonth, i).toDateString()
+      === new Date().toDateString();
+
+    const colors = dayColorMap[i] || [];
 
     const dots = colors.map(c =>
       `<span class="renewal-dot" style="background:${c};"></span>`
@@ -67,11 +76,12 @@ const updateCalendar = () => {
         <span class="date-num">${i}</span>
         ${dots ? `<span class="dot-row">${dots}</span>` : ''}
       </div>`;
+
     cellCount++;
   }
 
-  // Keep grid height the same
   const remaining = 42 - cellCount;
+
   for (let i = 1; i <= remaining; i++) {
     datesHTML += `
       <div class="date inactive">

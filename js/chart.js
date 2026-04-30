@@ -12,11 +12,17 @@ window.categoryColorMap = {};
 
 function renderSpendingChart(data) {
   const container = document.getElementById("spending-chart");
+  container.innerHTML = ""; // IMPORTANT: prevent duplicate canvases
+
   const canvas = document.createElement("canvas");
   container.appendChild(canvas);
 
   const categoryTotals = {};
+
   data.subscriptions.forEach(sub => {
+
+    if (sub.status === "Cancelled") return;
+
     categoryTotals[sub.category] =
       (categoryTotals[sub.category] || 0) + sub.amount;
   });
@@ -25,7 +31,8 @@ function renderSpendingChart(data) {
   const values = Object.values(categoryTotals);
 
   labels.forEach((label, i) => {
-    window.categoryColorMap[label] = CATEGORY_COLORS[i % CATEGORY_COLORS.length];
+    window.categoryColorMap[label] =
+      CATEGORY_COLORS[i % CATEGORY_COLORS.length];
   });
 
   new Chart(canvas, {
@@ -45,11 +52,10 @@ function renderSpendingChart(data) {
 
   canvas.onclick = () => openFullScreenChart(labels, values);
 }
-  
 
 let fullChartInstance = null;
-function openFullScreenChart(labels, values) {
 
+function openFullScreenChart(labels, values) {
   const modal = document.getElementById("chart-modal");
   const canvas = document.getElementById("fullscreen-chart");
 
@@ -57,7 +63,6 @@ function openFullScreenChart(labels, values) {
 
   modal.classList.remove("hidden");
 
-  // Destroy previous chart if it exists
   if (fullChartInstance) {
     fullChartInstance.destroy();
   }
@@ -79,10 +84,9 @@ function openFullScreenChart(labels, values) {
   });
 }
 
-  document.getElementById("close-modal").onclick = () => {
+document.getElementById("close-modal").onclick = () => {
   document.getElementById("chart-modal").classList.add("hidden");
 };
-
 
 document.querySelector(".modal-backdrop").onclick = () => {
   document.getElementById("chart-modal").classList.add("hidden");
