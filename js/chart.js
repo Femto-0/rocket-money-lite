@@ -10,7 +10,16 @@ const CATEGORY_COLORS = [
 
 window.categoryColorMap = {};
 
+// Sync Chart.js text colors with dark/light mode
+function updateChartDefaults() {
+  const isDark = document.body.classList.contains('dark-mode');
+  const textColor = isDark ? '#e0e0e0' : '#666';
+
+  Chart.defaults.color = textColor;
+}
+
 function renderSpendingChart(data) {
+  updateChartDefaults();
   const container = document.getElementById("spending-chart");
   container.innerHTML = ""; // IMPORTANT: prevent duplicate canvases
 

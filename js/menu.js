@@ -64,8 +64,12 @@ document.getElementById('appearance').addEventListener('click', function (e) {
     document.body.classList.toggle('dark-mode', isDark);
     themeIcon.textContent = isDark ? '🌑' : '☀️';
     themeSub.textContent  = isDark ? 'Dark mode' : 'Light mode';
+
+    updateChartDefaults();
+    document.getElementById('spending-chart').innerHTML = '';
+    renderSpendingChart(appData);
 });
 
-document.getElementById('signout').addEventListener('click', () => {
-    alert('Sign out — coming soon!');
+document.getElementById('logout').addEventListener('click', () => {
+    alert('Logged Out! (Is what it would say if this was a real page)');
 });
