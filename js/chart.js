@@ -45,32 +45,45 @@ function renderSpendingChart(data) {
 
   canvas.onclick = () => openFullScreenChart(labels, values);
 }
+  
 
+let fullChartInstance = null;
 function openFullScreenChart(labels, values) {
+
+  const modal = document.getElementById("chart-modal");
+  const canvas = document.getElementById("fullscreen-chart");
+
   const colors = labels.map(l => window.categoryColorMap[l]);
-  const win = window.open("", "_blank");
-  win.document.write(`
-    <html>
-    <head>
-      <title>Spending Breakdown</title>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"><\/script>
-    </head>
-    <body style="padding:40px;">
-      <canvas id="chart"></canvas>
-      <script>
-        new Chart(document.getElementById("chart"), {
-          type: "bar",
-          data: {
-            labels: ${JSON.stringify(labels)},
-            datasets: [{
-              label: "Spending ($)",
-              data: ${JSON.stringify(values)},
-              backgroundColor: ${JSON.stringify(colors)}
-            }]
-          }
-        });
-      <\/script>
-    </body>
-    </html>
-  `);
+
+  modal.classList.remove("hidden");
+
+  // Destroy previous chart if it exists
+  if (fullChartInstance) {
+    fullChartInstance.destroy();
+  }
+
+  fullChartInstance = new Chart(canvas, {
+    type: "bar",
+    data: {
+      labels,
+      datasets: [{
+        label: "Spending ($)",
+        data: values,
+        backgroundColor: colors
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
 }
+
+  document.getElementById("close-modal").onclick = () => {
+  document.getElementById("chart-modal").classList.add("hidden");
+};
+
+
+document.querySelector(".modal-backdrop").onclick = () => {
+  document.getElementById("chart-modal").classList.add("hidden");
+};
