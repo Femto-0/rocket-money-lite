@@ -112,23 +112,3 @@ function renderSubscriptionTable(data) {
   });
 }
 document.addEventListener("DOMContentLoaded", loadData);
-
-
-const toggleBtn = document.getElementById("theme-toggle");
-
-// Load saved theme
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark");
-  toggleBtn.textContent = "☀️";
-}
-
-// Toggle click
-toggleBtn.onclick = () => {
-  document.body.classList.toggle("dark");
-
-  const isDark = document.body.classList.contains("dark");
-
-  toggleBtn.textContent = isDark ? "☀️" : "🌙";
-
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-};
