@@ -199,6 +199,7 @@ body.dark-mode #confirm-delete-btn:hover {
 
 body.dark-mode #calendar-btn button {
   background: #0f3460;
+  color: #e0e0e0;
 }
 
 body.dark-mode #calendar-btn button:hover { 
