@@ -4,6 +4,24 @@ const $ = id => document.getElementById(id);
 const show = id => $(id).style.display = "flex";
 const hide = id => $(id).style.display = "none";
 
+
+function updateCancelledMetrics(data) {
+  const cancelledSubs = data.subscriptions.filter(
+    sub => sub.status === "Cancelled"
+  );
+
+  const cancelledCount = cancelledSubs.length;
+
+  const monthlySavings = cancelledSubs.reduce(
+    (sum, sub) => sum + sub.amount,
+    0
+  );
+
+  $("val-cancelled").textContent = cancelledCount;
+  $("val-savings").textContent =
+    `Saves $${monthlySavings.toFixed(2)} a Month`;
+}
+
 function refreshDashboard() {
   renderMetrics(appData);
   renderSubscriptionTable(appData);
@@ -14,6 +32,7 @@ function refreshDashboard() {
   renderUpcomingRenewals(appData);
   renderPaymentHistory(appData);
   updateCalendarWithRenewals(appData.subscriptions);
+  updateCancelledMetrics(appData);
 }
 
 document.addEventListener("click", e => {
@@ -63,9 +82,13 @@ document.addEventListener("click", e => {
   }
 
   if (e.target.id === "confirm-delete-btn") {
-    appData.subscriptions = appData.subscriptions.filter(
-      sub => sub.name !== deleteName
+    const sub = appData.subscriptions.find(
+    s => s.name === deleteName
     );
+
+    if (sub) {
+      sub.status = "Cancelled";
+    }
 
     refreshDashboard();
 

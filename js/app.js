@@ -36,17 +36,33 @@ function renderSubscriptionTable(data) {
   tbody.innerHTML = "";
 
   data.subscriptions.forEach(sub => {
+    const isCancelled = sub.status === "Cancelled";
+
     const [y, m, d]  = sub.nextRenewal.split('-').map(Number);
     const renewal    = new Date(y, m - 1, d);
-    const today      = new Date();
-    today.setHours(0, 0, 0, 0);
-    const daysAway   = (renewal - today) / (1000 * 60 * 60 * 24);
-    const isDueSoon  = daysAway <= 7 && daysAway >= 0;
 
-    const statusClass = isDueSoon ? "status-due-soon" : "status-active";
-    const statusLabel = isDueSoon ? "Due Soon" : sub.status;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const daysAway  = (renewal - today) / (1000 * 60 * 60 * 24);
+    const isDueSoon = daysAway <= 7 && daysAway >= 0;
+
+    let statusClass = "status-active";
+    let statusLabel = sub.status;
+
+    if (!isCancelled && isDueSoon) {
+      statusClass = "status-due-soon";
+      statusLabel = "Due Soon";
+    }
+
+    if (isCancelled) {
+      statusClass = "status-cancelled";
+      statusLabel = "Cancelled";
+    }
 
     const tr = document.createElement("tr");
+    tr.className = isCancelled ? "row-cancelled" : "";
+
     tr.innerHTML = `
       <td>${sub.name}</td>
       <td>${sub.category}</td>
@@ -58,11 +74,35 @@ function renderSubscriptionTable(data) {
       <td>$${sub.amount.toFixed(2)}</td>
       <td>${sub.nextRenewal}</td>
       <td>
-        <button class="btn-cancel-subscription" data-name="${sub.name}">Cancel</button>
+        ${
+          isCancelled
+            ? "" 
+            : `<button class="btn-cancel-subscription" data-name="${sub.name}">Cancel</button>`
+        }
       </td>
     `;
+
     tbody.appendChild(tr);
   });
 }
-
 document.addEventListener("DOMContentLoaded", loadData);
+
+
+const toggleBtn = document.getElementById("theme-toggle");
+
+// Load saved theme
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+  toggleBtn.textContent = "☀️";
+}
+
+// Toggle click
+toggleBtn.onclick = () => {
+  document.body.classList.toggle("dark");
+
+  const isDark = document.body.classList.contains("dark");
+
+  toggleBtn.textContent = isDark ? "☀️" : "🌙";
+
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+};
