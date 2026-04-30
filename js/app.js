@@ -73,12 +73,6 @@ function renderSubscriptionTable(data) {
     const daysAway  = (renewal - today) / (1000 * 60 * 60 * 24);
     const isDueSoon = daysAway <= 7 && daysAway >= 0;
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const daysAway  = (renewal - today) / (1000 * 60 * 60 * 24);
-    const isDueSoon = daysAway <= 7 && daysAway >= 0;
-
     let statusClass = "status-active";
     let statusLabel = sub.status;
 
