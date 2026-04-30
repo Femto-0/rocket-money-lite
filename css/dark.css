@@ -152,7 +152,8 @@ body.dark-mode .popup-box p  {
   color: #aab0cc;
 }
 
-body.dark-mode .popup-box input {
+body.dark-mode .popup-box input,
+body.dark-mode .popup-box select {
   background: #0f3460;
   color: #e0e0e0;
   border: 1px solid #1a3a7e;
@@ -161,8 +162,15 @@ body.dark-mode .popup-box input {
   outline: none;
 }
 
-body.dark-mode .popup-box input::placeholder { color: #5566aa; }
-body.dark-mode .popup-box small { color: #6677bb !important; }
+body.dark-mode .popup-box input::placeholder,
+body.dark-mode .popup-box select {
+  color: #5566aa;
+}
+
+body.dark-mode .popup-box small {
+  color: #6677bb !important; 
+}
+
 body.dark-mode .popup-box button {
   background: #0f3460;
   color: #e0e0e0;

@@ -405,7 +405,7 @@ body {
   margin-top: 0;
 }
 
-.popup-box input {
+.popup-box input, .popup-box select {
   display: block;
   width: 100%;
   margin-bottom: 10px;
@@ -413,6 +413,7 @@ body {
   box-sizing: border-box;
   border: 1px solid #d1d5db;
   border-radius: 8px;
+  background: white;
 }
 
 .popup-box input:focus {

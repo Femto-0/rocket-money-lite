@@ -178,7 +178,14 @@
       <h3>Add Subscription</h3>
       <br>
       <input id="add-name" type="text" placeholder="Service name">
-      <input id="add-category" type="text" placeholder="Category">
+      <select id="add-category">
+        <option value="">Select Category</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Music">Music</option>
+        <option value="Health">Health</option>
+        <option value="Bills">Bills</option>
+        <option value="Miscellaneous">Miscellaneous</option>
+      </select>
       <input id="add-amount" type="number" step="0.01" placeholder="Amount (in current currency)">
       <small id="add-currency-hint">Entering amount in USD</small>
       <input id="add-renewal" type="date">
